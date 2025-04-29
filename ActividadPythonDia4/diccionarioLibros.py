@@ -47,7 +47,7 @@ while continuar_menu:
                     "autor": autor,
                     "año": año_publicacion
                 }
-                print("\n\033[91mLibro agregado correctamente.\033[0m")
+                print("\n\033[92mLibro agregado correctamente.\033[0m")
                 while continuar:
                     valor = input("\033[93m\n¿Deseas continuar ingresando libros?: S()si N()no:\033[0m").lower()
                     if valor.lower() == "n":
