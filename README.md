@@ -23,3 +23,4 @@ En esta carpeta encontrara los ejercicios CRUD de python que hicimos el cuarto d
 ### Actividad 1 -Semana 2 - Dia 1
 
 En esta carpeta encontrara los ejercicios de repaso de python que hicimos el primer dia de la semana 2.
+holi
