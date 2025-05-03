@@ -23,3 +23,11 @@ En esta carpeta encontrara los ejercicios CRUD de python que hicimos el cuarto d
 ### Actividad 1 -Semana 2 - Dia 1
 
 En esta carpeta encontrara los ejercicios de repaso de python que hicimos el primer dia de la semana 2.
+
+### Actividad 2 -Semana 2 - Dia 2
+
+En esta carpeta encontrara la actividad de Sistema de Gestión y Costeo de Equipaje Aéreo ubicado en la pagina learn.
+
+### Actividad 3 -Semana 2 - Dia 3
+
+En esta carpeta encontrara la información de un archivo.txt organizada en una tabla con colores distintivos.
