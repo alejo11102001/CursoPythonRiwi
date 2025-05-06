@@ -31,3 +31,7 @@ En esta carpeta encontrara la actividad de Sistema de Gestión y Costeo de Equip
 ### Actividad 3 -Semana 2 - Dia 3
 
 En esta carpeta encontrara la información de un archivo.txt organizada en una tabla con colores distintivos.
+
+### Actividad 1 -Semana 3 - Dia 1
+
+En esta carpeta encontrara la actividad del simulacro de un cajero personal

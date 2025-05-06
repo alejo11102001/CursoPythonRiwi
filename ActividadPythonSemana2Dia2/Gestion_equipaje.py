@@ -1,89 +1,146 @@
-### Entradas:
+boletas = {}
+boleto = 1
+opcion = ""
 
-# nombre
+while opcion != "5":
+    print("\n=== Menú Principal ===")
+    print("1. Registrar nuevo boleto")
+    print("2. Ver resumen de todos los boletos")
+    print("3. Generar informe administrativo")
+    print("4. Consultar compra por ID")
+    print("5. Salir")
+    opcion = input("\nSeleccione una opción: ")
 
-## destino (tipo de viaje)
-# bogota -> medellin (Nacional) 230.000
-# bogota -> españa (internacional) 4.200.000
+    if opcion == "1":
+        continuar_registro = True
+        while continuar_registro:
+            print("\n--- Registro de Boleto ---")
 
-## equipaje (principal)
-# Hasta 20 kg	$50.000
-# Hasta 30 kg	$70.000
-# Hasta 50 kg	$110.000
-# Más de 50 kg	❌ No admitido (debe cancelar o viajar sin equipaje
-# lleva equipaje de mano ? SI -NO 
-# if equipaje_mano > 13: rechazado el equipaje
+            nombre = input("\nDigite su nombre completo: ").strip()
+            while not nombre:
+                nombre = input("Nombre no válido. Intente de nuevo: ").strip()
 
-## Fecha de vuelo
+            tipo_viaje = input("\nDigite tipo de viaje ('nacional' o 'internacional'): ").lower()
+            while tipo_viaje not in ["nacional", "internacional"]:
+                tipo_viaje = input("Tipo inválido. Escriba 'nacional' o 'internacional': ").lower()
 
-## calcular el costo total del viaje
-
-## asignar id unico
-## limites de peso
-## aplicar costos por equipaje
-## resumen
-continuar = True
-boletas = []
-while continuar:
-    nombre = input("\nDigite su nombre completo: ")
-
-    tipo_viaje = input("\nDigite tipo de viaje (nacional o internacional): ")
-    if tipo_viaje == "nacional":
-        costo = 230000
-        print("\nCosto del viaje $230.000")
-    elif tipo_viaje == "internacional":
-        costo = 4200000
-        print("\nCosto del viaje $4.200.000")
-    else:
-        print("\nViaje no disponible")
-
-    peso_equipaje = float(input("\nDigite peso del equipaje (Kg): "))
-    if peso_equipaje <= 20: 
-        costo_e = 50000
-        print("\nCosto adicional de $50.000")
-    elif peso_equipaje > 20 and peso_equipaje <= 30:
-        costo_e = 70000
-        print("\nCosto adicional de $70.000")
-    elif peso_equipaje > 30 and peso_equipaje <= 50:
-        costo_e = 110000
-        print("\nCosto adicional de $110.000")
-    else:
-        print("\nNo admitido (debe cancelar o viajar sin equipaje)")
-
-    equipaje_mano = input("\n¿Lleva equipaje de mano? (si) o (no): ")
-    estado_mano = "No lleva equipaje de mano"
-
-    if equipaje_mano.lower() == "si":
-            mano_peso = float(input("\nDigite el peso del equipaje de mano (Kg): "))
-            if mano_peso > 13:
-                estado_mano = "\nEquipaje de mano rechazado"
+            if tipo_viaje == "nacional":
+                costo = 230000
+                print("\nCosto del viaje: $230.000")
             else:
-                estado_mano = "\nEquipaje de mano aceptado"
-    elif equipaje_mano.lower() == "no":
-        estado_mano = "\nNo lleva equipaje de mano"
+                costo = 4200000
+                print("\nCosto del viaje: $4.200.000")
+
+            while True:
+                try:
+                    peso_equipaje = float(input("\nDigite peso del equipaje (Kg): "))
+                    if peso_equipaje > 50:
+                        print("Equipaje no admitido (debe cancelar o viajar sin equipaje)")
+                        continuar_viaje = input("¿Desea continuar sin equipaje? (si/no): ").lower()
+                        if continuar_viaje == "si":
+                            costo_e = 0
+                            break
+                        else:
+                            costo_e = 0
+                            break
+                    elif peso_equipaje <= 20:
+                        costo_e = 50000
+                        print("\nCosto adicional: $50.000")
+                        break
+                    elif peso_equipaje <= 30:
+                        costo_e = 70000
+                        print("\nCosto adicional: $70.000")
+                        break
+                    elif peso_equipaje <= 50:
+                        costo_e = 110000
+                        print("\nCosto adicional: $110.000")
+                        break
+                except ValueError:
+                    print("Por favor, ingrese un número válido.")
+
+            equipaje_mano = input("\n¿Lleva equipaje de mano? (si/no): ").lower()
+            estado_mano = "No lleva equipaje de mano"
+            if equipaje_mano == "si":
+                try:
+                    mano_peso = float(input("Digite el peso del equipaje de mano (Kg): "))
+                    if mano_peso > 13:
+                        estado_mano = "Equipaje de mano rechazado (excede 13kg)"
+                    else:
+                        estado_mano = "Equipaje de mano aceptado"
+                except ValueError:
+                    estado_mano = "Respuesta inválida para peso"
+            elif equipaje_mano != "no":
+                estado_mano = "Respuesta inválida"
+
+            fecha_viaje = input("\nDigite la fecha del viaje (DD/MM/AAAA): ").strip()
+            while not fecha_viaje:
+                fecha_viaje = input("Fecha inválida. Intente de nuevo: ").strip()
+
+            costo_total = costo + costo_e
+            boleto_id = f"COMP{boleto:04}"
+            boleto += 1
+
+            boletas[boleto_id] = {
+                "Nombre": nombre,
+                "Tipo de viaje": tipo_viaje,
+                "Fecha de viaje": fecha_viaje,
+                "Peso del equipaje": peso_equipaje,
+                "Equipaje de mano": estado_mano,
+                "Costo boleto": costo_total
+            }
+
+            print("\n¡Boleto agregado exitosamente!")
+
+            seguir = input("\n¿Desea registrar otro boleto? (si/no): ").lower()
+            if seguir != "si":
+                continuar_registro = False
+
+    elif opcion == "2":
+        if boletas:
+            print("\n--- Resumen de Pasajeros ---")
+            for id_boleto, datos in boletas.items():
+                print(f"\nID: {id_boleto}")
+                for clave, valor in datos.items():
+                    print(f"{clave}: {valor}")
+        else:
+            print("\nNo hay boletos registrados.")
+
+    elif opcion == "3":
+        print("\n--- Informe Administrativo ---")
+        print("1. Ver total recaudado")
+        print("2. Ver número de pasajeros (total / nacional / internacional)")
+        print("3. Buscar recaudo por fecha")
+        subopcion = input("Seleccione una subopción (1/2/3): ")
+
+        if subopcion == "1":
+            total_general = sum(datos["Costo boleto"] for datos in boletas.values())
+            print(f"\nTotal recaudado por boletos: ${total_general:,.0f}")
+
+        elif subopcion == "2":
+            total_pasajeros = len(boletas)
+            nacionales = sum(1 for datos in boletas.values() if datos["Tipo de viaje"] == "nacional")
+            internacionales = sum(1 for datos in boletas.values() if datos["Tipo de viaje"] == "internacional")
+            print(f"\nTotal de pasajeros: {total_pasajeros}")
+            print(f"Nacionales: {nacionales}")
+            print(f"Internacionales: {internacionales}")
+
+        elif subopcion == "3":
+            fecha_consulta = input("\nIngrese una fecha para consultar (DD/MM/AAAA): ").strip()
+            total_fecha = sum(datos["Costo boleto"] for datos in boletas.values() if datos["Fecha de viaje"] == fecha_consulta)
+            print(f"Total recaudado el {fecha_consulta}: ${total_fecha:,.0f}")
+        else:
+            print("Subopción no válida.")
+
+    elif opcion == "4":
+        buscar_id = input("\nIngrese el ID de una compra (ej: COMP0003): ").strip()
+        if buscar_id in boletas:
+            print(f"\nDetalles del boleto {buscar_id}:")
+            for clave, valor in boletas[buscar_id].items():
+                print(f"{clave}: {valor}")
+        else:
+            print("ID no encontrado.")
+
+    elif opcion == "5":
+        print("\nSaliendo del sistema. Gracias por usarlo.")
     else:
-        estado_mano = "\nRespuesta inválida"
-
-    fecha_viaje = input("\nDigite la fecha del viaje: ")
-
-    costo_total = costo + costo_e
-
-    boleta = [nombre, tipo_viaje, fecha_viaje, peso_equipaje, estado_mano, costo_total]
-    boletas.append(boleta)
-    print("\033[92m\n¡Boleto agregado exitosamente!\033[0m")
-
-    seguir = input("\nDesea comprar otro boleto (si) o (no): ")
-    if seguir == "si":
-        continue
-    else:
-        break
-
-
-print("\nResumen del Pasajero:")
-print(boletas)
-
-for suma in boletas:
-    boletas[suma] = costo_total
-    suma_total += suma
-
-print(suma_total)
+        print("\nOpción no válida. Intente de nuevo.")
