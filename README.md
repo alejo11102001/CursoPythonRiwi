@@ -34,4 +34,8 @@ En esta carpeta encontrara la información de un archivo.txt organizada en una t
 
 ### Actividad 1 -Semana 3 - Dia 1
 
-En esta carpeta encontrara la actividad del simulacro de un cajero personal
+En esta carpeta encontrara la actividad del simulacro de un cajero personal.
+
+### Actividad 2 -Semana 3 - Dia 2
+
+En esta carpeta encontrara los ejercicios de funciones que van desde el nivel basico, pasa por intermedio y termina en avanzado.
