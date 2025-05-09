@@ -65,7 +65,7 @@ while continuar_menu:
                     elif valor == "s":
                         break
                     else:
-                         print("\033[91m\nPor favor ingresa 'N' para no o 'S' para sí.\033[0m")
+                        print("\033[91m\nPor favor ingresa 'N' para no o 'S' para sí.\033[0m")
         elif opcion == 2:
             if len(libro_diccionario) == 0:
                 print("\033[91m\nNo hay libros registrados\033[0m")
