@@ -81,54 +81,52 @@ def delete_student():
             print("\033[93m\nEl estudiante no esta en la base de datos.\033[0m")
 
 while True:
-    print("\033[93m\nBienvenido a la gestion de estudiantes\033[0m.")
-    print("\033[93m\nOpciones que puede realizar\033[0m")
-    print("\n1. Agregar estudiante.")
-    print("2. Buscar estudiante.")
-    print("3. Actualizar estudiante.")
-    print("4. Eliminar estudiante.")
-    print("5. Calcular promedio.")
-    print("6. Lista de estudiantes reprobados.")
-    print("7. Salir.")
-
-    while True:
-            try:
-                option = int(input("\n\033[96mElije la opción que deseas: \033[0m"))
-                if option < 1 or option > 7:
-                    print("\n\033[93m\nIngrese una opción válida.\033[0m")
-                    continue
-                break
-            except ValueError:
-                print("\n\033[91mPor favor ingrese un número entre 1 y 7.\033[0m")
-
-    match option:
-        case 1:
-            while True:
-                add_student()
-                if not advance_function_student():
+        print("\033[93m\nBienvenido a la gestion de estudiantes\033[0m.")
+        print("\033[93m\nOpciones que puede realizar\033[0m")
+        print("\n1. Agregar estudiante.")
+        print("2. Buscar estudiante.")
+        print("3. Actualizar estudiante.")
+        print("4. Eliminar estudiante.")
+        print("5. Calcular promedio.")
+        print("6. Lista de estudiantes reprobados.")
+        print("7. Salir.")
+        while True:
+                try:
+                    option = int(input("\n\033[96mElije la opción que deseas: \033[0m"))
+                    if option < 1 or option > 7:
+                        print("\n\033[93m\nIngrese una opción válida.\033[0m")
+                        continue
                     break
-        case 2:
-            while True:
-                search_student()
-                if not advance_function_search():
-                    break
-        case 3:
-            while True:
-                update_student()
-                if not advance_function_update():
-                    break
-        case 4:
-            while True:
-                delete_student()
-                if not advance_function_remove():
-                    break
-        case 5:
-            calculate_average_function()
-            return_to_menu_or_exit()
-        case 6:
-            show_students_function()
-            return_to_menu_or_exit()
-        case 7:
-            print("\033[93m\nSaliendo...\033[0m")
-            print("\033[93m\nGracias Vuelva pronto\033[0m")
-            exit()
+                except ValueError:
+                    print("\n\033[91mPor favor ingrese un número entre 1 y 7.\033[0m")
+        match option:
+            case 1:
+                while True:
+                    add_student()
+                    if not advance_function_student():
+                        break
+            case 2:
+                while True:
+                    search_student()
+                    if not advance_function_search():
+                        break
+            case 3:
+                while True:
+                    update_student()
+                    if not advance_function_update():
+                        break
+            case 4:
+                while True:
+                    delete_student()
+                    if not advance_function_remove():
+                        break
+            case 5:
+                calculate_average_function()
+                return_to_menu_or_exit()
+            case 6:
+                show_students_function()
+                return_to_menu_or_exit()
+            case 7:
+                print("\033[93m\nSaliendo...\033[0m")
+                print("\033[93m\nGracias Vuelva pronto\033[0m")
+                exit()
